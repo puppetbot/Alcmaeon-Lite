@@ -104,23 +104,22 @@ void loop() {
 // ---------------------------------------------------------------------
 
 void sendSample(uint32_t stamp) {
-  char *p = lineBuf;
-  p += ultoa(stamp, p, 10) - p;      // timestamp in microseconds
+  Serial.print(stamp);
 
   for (uint8_t i = 0; i < N_ANALOG; i++) {
-    *p++ = ',';
-    p += utoa(analogRead(ANALOG_PINS[i]), p, 10) - p;
+    Serial.print(',');
+    Serial.print(analogRead(ANALOG_PINS[i]));
   }
 
   for (uint8_t i = 0; i < N_DIGITAL; i++) {
     uint8_t raw = digitalRead(DIGITAL_PINS[i]);
     uint8_t pressed = BUTTONS_ACTIVE_LOW ? (raw == LOW) : (raw == HIGH);
-    *p++ = ',';
-    *p++ = pressed ? '1' : '0';
+
+    Serial.print(',');
+    Serial.print(pressed);
   }
 
-  *p = '\0';
-  Serial.println(lineBuf);
+  Serial.println();
 }
 
 void handleCommands() {
