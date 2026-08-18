@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Alcmaeon Lite
+Comment=EMG / ECG, analog and digital signal recorder
+Exec=bash -c 'cd "$(dirname "%k")" && ./alcmaeon-lite.sh'
+Icon=utilities-system-monitor
+Terminal=false
+Categories=Science;Engineering;
